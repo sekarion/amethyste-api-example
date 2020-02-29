@@ -59,6 +59,7 @@ class MessageForm {
 
     findMember(guild, query, bot) {
         let user;
+        console.log(query);
         const search = query.toLowerCase();
         user = guild.members.cache.filter(m => m.displayName.toLowerCase().includes(search)
             || m.user.tag.toLowerCase().includes(search)

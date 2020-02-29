@@ -17,13 +17,61 @@ module.exports = class Help extends Command {
     async run(msg) {
         let args = msg.content.split(' ').splice(1);
         if (args.length > 0) {
+            let cmd = args[0].trim();
+            if (cmd.startsWith(msg.prefix)) {
+                cmd = cmd.substring(msg.prefix.length);
+            }
+            //get cmd
+            let command = this.bot.commands.get(cmd.toLowerCase());
+            if (!command) {
+                //check aliases
+                command = this.bot.commands.get(this.bot.aliases.get(cmd.toLowerCase()));
+            }
+            if (command && !command.hidden) {
+                if (command.help) {
+                    return msg.channel.send(await this.buildCommandHelp(msg, command));
+                } else {
+                    return msg.channel.send('No details for this command')
+                }
+            }
         } else {
             await msg.channel.send(await this.buildMenu(msg, this.bot.commands));
         }
     }
-    async buildMenu(msg, commands){
+
+    async buildCommandHelp(msg, command){
+        let helpMessage = "";
+        let titlecmd = "";
+        titlecmd += `Sheet of commands ${this.bot.prefixes[0]}${command.cmd}\n`;
+        if (command.aliases.length > 0) {
+            let aliases = command.aliases.map(a => `\`${a}\``);
+            helpMessage += `__Alias:__ ${aliases.join(', ')}\n`;
+        }
+        if (command.help.short) {
+            helpMessage += `__Short:__ ${command.help.short}\n`;
+        }
+        if (command.help.long) {
+            helpMessage += `__Long:__ ${command.help.long}\n`;
+        }
+        if (command.help.usage) {
+            helpMessage += `__Use:__ ${command.help.usage}\n`;
+        }
+        if (command.help.example) {
+            helpMessage += `__Example:__ ${command.help.example}\n`;
+        }
+        if (command.help.warning){
+            helpMessage += `__Warning:__ ${command.help.warning}\n`;
+        }
+        let embed_author = {
+            text: msg.author.username,
+            icon_url: msg.author.avatarURL,
+            url: "https://api.amethyste-bot.tk"
+        };
+        return { embed: { footer: embed_author, title: titlecmd, description: helpMessage} };
+    }
+    async buildMenu(msg, commands) {
         let categories = {};
-        let i =0;
+        let i = 0;
         //recupère les catégories non traduite la
         commands.forEach(c => {
             if (!c.hidden) {
@@ -74,8 +122,9 @@ module.exports = class Help extends Command {
             }
             helpMessage += '\n\n'
         }
-        return { embed: { title: title, description: helpMessage} };
+        return {embed: {title: title, description: helpMessage}};
     }
+
     /**
      * Returns the sorting number for a ranking in help
      * @param {String} category Name of the category to be evaluated
@@ -87,38 +136,17 @@ module.exports = class Help extends Command {
             case 'ame':
                 ranking = 0;
                 break;
-            case 'moderation':
+            case 'utility':
                 ranking = 1;
                 break;
-            case 'economy':
+            case 'fun':
                 ranking = 2;
                 break;
-            case 'utility':
+            case 'image':
                 ranking = 3;
                 break;
-            case 'search':
-                ranking = 4;
-                break;
-            case 'fun':
-                ranking = 5;
-                break;
-            case 'image':
-                ranking = 6;
-                break;
-            case 'music':
-                ranking = 7;
-                break;
-            case 'playlist':
-                ranking = 9;
-                break;
-            case 'radio':
-                ranking = 8;
-                break;
-            case 'permission':
-                ranking = 10;
-                break;
             case 'nsfw':
-                ranking = 11;
+                ranking = 4;
                 break;
         }
         return ranking;
