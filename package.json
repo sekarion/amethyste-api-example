@@ -1,0 +1,25 @@
+{
+  "name": "amethyste-api-example",
+  "version": "1.0.0",
+  "description": "Example bot for the amethyst API",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sekarion/amethyste-api-example.git"
+  },
+  "author": "jorisdugue",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sekarion/amethyste-api-example/issues"
+  },
+  "homepage": "https://github.com/sekarion/amethyste-api-example#readme",
+  "dependencies": {
+    "amethyste-api": "^1.1.2",
+    "chalk": "^3.0.0",
+    "discord.js": "git+https://github.com/discordjs/discord.js.git",
+    "draftlog": "^1.0.12"
+  }
+}
