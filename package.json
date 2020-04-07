@@ -21,6 +21,6 @@
     "chalk": "^3.0.0",
     "discord.js": "git+https://github.com/discordjs/discord.js.git",
     "draftlog": "^1.0.12",
-    "minimist": "^1.2.2"
+    "minimist": "^1.2.3"
   }
 }
