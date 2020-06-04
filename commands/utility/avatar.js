@@ -2,7 +2,7 @@
 const Command = require('../../structures/Command');
 module.exports = class Avatar extends Command {
   /**
-   * Constructor
+   * @constructor
    * @param {object} bot the Client instance
    */
   constructor(bot) {

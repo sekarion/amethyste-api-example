@@ -5,7 +5,7 @@ const {MessageAttachment} = require('discord.js');
  */
 class Afusion extends Command {
   /**
-   * Constructor
+   * @constructor
    * @param {object} bot the Client instance
    */
   constructor(bot) {
@@ -25,32 +25,21 @@ class Afusion extends Command {
    * @param {object} msg the message object
    */
   async run(msg) {
-    const msgSplit = msg.content
-      .trim()
-      .split(' ')
-      .map(c => c.trim())
-      .filter(c => c !== '')
-      .splice(1)
-      .join(' ');
-    let usr;
-    if (msgSplit.length === 0) {
-      return msg.channel.send('You need a target');
-    } else if (msg.mentions.members.size > 0) {
-      usr = msg.mentions.members.first();
-    } else if (msgSplit) {
-      usr = this.bot.utils.findMember(msg.channel.guild, msgSplit, this.bot);
-      if (usr.size === 0)
-        return msg.channel.send(`❌ Nobody found matching \`${msgSplit}\`!`);
-      else if (usr.size === 1) usr = usr.first();
-      else return msg.channel.send(this.bot.utils.formatMembers(this.bot, usr));
-    }
-    const imgBuffer = await this.bot.ameAPI.generate('afusion', {
-      url: usr.user.displayAvatarURL({format: 'png', size: 1024}),
-      avatar: msg.author.displayAvatarURL({format: 'png', size: 1024}),
-    });
-    return await msg.channel.send(
-      new MessageAttachment(imgBuffer, `afusion-${new Date('now')}.png`)
+    const avatarList = msg.mentions.users.map(user =>
+      user.displayAvatarURL({
+        format: 'png',
+        size: 512,
+      })
     );
+    const m = await msg.channel.send('LOADING...');
+    const buffer = await this.bot.ameAPI.generate('afusion', {
+      url: avatarList[0] || msg.author,
+      avatar: avatarList[1] || msg.author,
+    });
+    msg.channel.send(
+      new MessageAttachment(buffer, `afusion-${Date.now()}.png`)
+    );
+    m.delete();
   }
 }
 module.exports = Afusion;

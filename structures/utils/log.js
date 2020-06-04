@@ -17,7 +17,7 @@ const frames = ['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '
  */
 class Log {
   /**
-   * Constructor
+   * @constructor
    */
   constructor() {
     /** @type {Map<String | Number, Object>} */

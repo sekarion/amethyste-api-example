@@ -7,7 +7,7 @@ const minimist = require('minimist');
  */
 class Beautiful extends Command {
   /**
-   * Constructor
+   * @constructor
    * @param {object} bot the Client instance
    */
   constructor(bot) {

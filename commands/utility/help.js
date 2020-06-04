@@ -1,7 +1,7 @@
 const Command = require('../../structures/Command');
 module.exports = class Help extends Command {
   /**
-   * Constructor
+   * @constructor
    * @param {object} bot the Client instance
    */
   constructor(bot) {
