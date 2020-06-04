@@ -1,16 +1,25 @@
+/**
+ * Class Command (baseCommand)
+ */
 class Command {
-    constructor(bot) {
-        this.bot = bot;
-        this.aliases = [];
-        this.disabled = false;
-        this.hidden = false;
-        this.ownerOnly = false;
-        this.needGuild = true;
-    }
+  /**
+   * Constructor
+   * @param {object} bot
+   */
+  constructor(bot) {
+    this.bot = bot;
+    this.aliases = [];
+    this.disabled = false;
+    this.hidden = false;
+    this.ownerOnly = false;
+    this.needGuild = true;
+  }
 
-    run (msg) {
-
-    }
+  /**
+   * Execute the command
+   * @param {object} msg
+   */
+  run(msg) {}
 }
 
 module.exports = Command;
