@@ -1,2 +1,2 @@
-const AmeBot = require("./structures/AmeBot");
+const AmeBot = require('./structures/AmeBot');
 new AmeBot();
