@@ -1,22 +1,22 @@
 const Command = require('../../structures/Command');
 const {MessageAttachment} = require('discord.js');
 /**
- * Class Afusion extends command (baseCommand)
+ * Class Whowouldwin extends command (baseCommand)
  */
-class Afusion extends Command {
+class Whowouldwin extends Command {
   /**
    * @constructor
    * @param {object} bot the Client instance
    */
   constructor(bot) {
     super(bot);
-    this.cmd = 'afusion';
+    this.cmd = 'whowouldwin';
     this.cat = 'fun';
     this.needGuild = true;
     this.help = {
-      short: 'help.afusion.short',
-      usage: 'help.afusion.usage',
-      example: 'help.afusion.example',
+      short: 'help.whowouldwin.short',
+      usage: 'help.whowouldwin.usage',
+      example: 'help.whowouldwin.example',
     };
   }
 
@@ -32,14 +32,14 @@ class Afusion extends Command {
       })
     );
     const m = await msg.channel.send('LOADING...');
-    const buffer = await this.bot.ameAPI.generate('afusion', {
+    const buffer = await this.bot.ameAPI.generate('whowouldwin', {
       url: avatarList[0] || msg.author,
       avatar: avatarList[1] || msg.author,
     });
     msg.channel.send(
-      new MessageAttachment(buffer, `afusion-${Date.now()}.png`)
+      new MessageAttachment(buffer, `whowouldwin-${Date.now()}.png`)
     );
     m.delete();
   }
 }
-module.exports = Afusion;
+module.exports = Whowouldwin;

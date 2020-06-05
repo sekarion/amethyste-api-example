@@ -32,7 +32,7 @@ class Invert extends Command {
     const buffer = await this.bot.ameAPI.generate('invert', {
       url: user.displayAvatarURL({
         format: 'png',
-        size: 512,
+        size: 1024,
       }),
     });
     msg.channel.send(new MessageAttachment(buffer, `invert-${Date.now()}.png`));

@@ -1,22 +1,22 @@
 const Command = require('../../structures/Command');
-const {MessageAttachment} = require('discord.js');
+const { MessageAttachment } = require('discord.js');
 /**
- * Class Batslap extends Command (baseCommand)
+ * Class Discordhouse extends Command (baseCommand)
  */
-class Batslap extends Command {
+class Discordhouse extends Command {
   /**
    * @constructor
    * @param {object} bot the Client instance
    */
   constructor(bot) {
     super(bot);
-    this.cmd = 'batslap';
+    this.cmd = 'discordhouse';
     this.cat = 'fun';
     this.needGuild = true;
     this.help = {
-      short: 'help.batslap.short',
-      usage: 'help.batslap.usage',
-      example: 'help.batslap.example',
+      short: 'help.discordhouse.short',
+      usage: 'help.discordhouse.usage',
+      example: 'help.discordhouse.example',
     };
   }
 
@@ -29,16 +29,23 @@ class Batslap extends Command {
       return msg.channel.send('I am missing `ATTACH_FILES`');
     const user = msg.mentions.users.first() || msg.author;
     const m = await msg.channel.send('LOADING...');
-    const buffer = await this.bot.ameAPI.generate('batslap', {
+    let text;
+    if (!msg.mentions.users) text = msgSplitinfo.join(' ');
+    else {
+      msgSplitinfo.shift();
+      text = msgSplitinfo.join(' ')
+    }
+    if (['brilliance', 'bravery', 'balance'].indexOf(text.toLowercase()) === -1) text = '';
+    const buffer = await this.bot.ameAPI.generate('discordhouse', {
       url: user.displayAvatarURL({
         format: 'png',
         size: 1024,
       }),
     });
     msg.channel.send(
-      new MessageAttachment(buffer, `batslap-${Date.now()}.png`)
+      new MessageAttachment(buffer, `discordhouse-${Date.now()}.png`)
     );
     m.delete().catch(e => this.bot.log.error(e));
   }
 }
-module.exports = Batslap;
+module.exports = Discordhouse;

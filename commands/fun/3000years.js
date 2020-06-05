@@ -32,11 +32,11 @@ class Years extends Command {
     const buffer = await this.bot.ameAPI.generate('3000years', {
       url: user.displayAvatarURL({
         format: 'png',
-        size: 512,
+        size: 1024,
       }),
     });
     msg.channel.send(
-      new MessageAttachment(buffer, `3000years-${Date.now()}.png`)
+      new MessageAttachment(buffer, `3000years-${Date('now')}.png`)
     );
     m.delete().catch(e => this.bot.log.error(e));
   }
