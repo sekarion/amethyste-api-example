@@ -7,7 +7,7 @@ const AmeClient = require('amethyste-api');
  */
 class AmeBot extends Client {
   /**
-   * Constructor
+   * @constructor
    * @param {object} option
    */
   constructor(option) {

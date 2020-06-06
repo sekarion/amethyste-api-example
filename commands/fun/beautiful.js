@@ -5,7 +5,7 @@ const {MessageAttachment} = require('discord.js');
  */
 class Beautiful extends Command {
   /**
-   * Constructor
+   * @constructor
    * @param {object} bot the Client instance
    */
   constructor(bot) {
@@ -25,33 +25,20 @@ class Beautiful extends Command {
    * @param {object} msg the message object
    */
   async run(msg) {
-    const msgSplit = msg.content
-      .trim()
-      .split(' ')
-      .map(c => c.trim())
-      .filter(c => c !== '')
-      .splice(1)
-      .join(' ');
-    let usr;
-    if (msgSplit.length === 0) {
-      usr = this.bot.utils
-        .findMember(msg.channel.guild, msg.author.id, this.bot)
-        .first();
-    } else if (msg.mentions.members.size > 0) {
-      usr = msg.mentions.members.first();
-    } else if (msgSplit) {
-      usr = this.bot.utils.findMember(msg.channel.guild, msgSplit, this.bot);
-      if (usr.size === 0)
-        return msg.channel.send(`❌ Nobody found matching \`${msgSplit}\`!`);
-      else if (usr.size === 1) usr = usr.first();
-      else return msg.channel.send(this.bot.utils.formatMembers(this.bot, usr));
-    }
-    const imgBuffer = await this.bot.ameAPI.generate('beautiful', {
-      url: usr.user.displayAvatarURL({format: 'png', size: 1024}),
+    if (!msg.guild.me.hasPermission('ATTACH_FILES'))
+      return msg.channel.send('I am missing `ATTACH_FILES`');
+    const user = msg.mentions.users.first() || msg.author;
+    const m = await msg.channel.send('LOADING...');
+    const buffer = await this.bot.ameAPI.generate('beautiful', {
+      url: user.displayAvatarURL({
+        format: 'png',
+        size: 1024,
+      }),
     });
-    return await msg.channel.send(
-      new MessageAttachment(imgBuffer, `beautiful-${new Date('now')}.png`)
+    msg.channel.send(
+      new MessageAttachment(buffer, `beautiful-${Date.now()}.png`)
     );
+    m.delete().catch(e => this.bot.log.error(e));
   }
 }
 module.exports = Beautiful;

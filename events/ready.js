@@ -1,6 +1,6 @@
 module.exports = class {
   /**
-   * Constructor
+   * @constructor
    * @param {object} bot
    */
   constructor(bot) {

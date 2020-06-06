@@ -3,7 +3,7 @@
  */
 class Command {
   /**
-   * Constructor
+   * @constructor
    * @param {object} bot
    */
   constructor(bot) {
