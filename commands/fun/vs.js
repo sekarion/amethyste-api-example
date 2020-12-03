@@ -1,7 +1,8 @@
 const Command = require('../../structures/Command');
 const {MessageAttachment} = require('discord.js');
 /**
- * Class Vs extends command (baseCommand)
+ * @class
+ * @extends Command
  */
 class Vs extends Command {
   /**
@@ -21,7 +22,8 @@ class Vs extends Command {
   }
 
   /**
-   * Execute the command
+   * @async
+   * @method run
    * @param {object} msg the message object
    */
   async run(msg) {
@@ -32,14 +34,16 @@ class Vs extends Command {
       })
     );
     const m = await msg.channel.send('LOADING...');
-    const buffer = await this.bot.ameAPI.generate('vs', {
-      url: avatarList[0] || msg.author,
-      avatar: avatarList[1] || msg.author,
-    });
     msg.channel.send(
-      new MessageAttachment(buffer, `vs-${Date.now()}.png`)
+      new MessageAttachment(
+        await this.bot.ameAPI.generate('vs', {
+          url: avatarList[0] || msg.author,
+          avatar: avatarList[1] || msg.author,
+        }),
+        `vs-${Date('now')}.png`
+      )
     );
-    m.delete();
+    m.delete().catch(e => this.bot.log.error(e));
   }
 }
 module.exports = Vs;

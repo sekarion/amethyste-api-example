@@ -8,7 +8,8 @@ module.exports = class {
   }
 
   /**
-   * Execute on event
+   * @async
+   * @method run
    */
   async run() {
     this.bot.prefixes.push(`<@!${this.bot.user.id}>`, `<@${this.bot.user.id}>`);

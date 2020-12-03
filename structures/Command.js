@@ -16,7 +16,8 @@ class Command {
   }
 
   /**
-   * Execute the command
+   * @async
+   * @method run
    * @param {object} msg
    */
   run(msg) {}

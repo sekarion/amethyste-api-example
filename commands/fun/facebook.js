@@ -1,7 +1,8 @@
 const Command = require('../../structures/Command');
-const { MessageAttachment } = require('discord.js');
+const {MessageAttachment} = require('discord.js');
 /**
- * Class Facebook extends Command (baseCommand)
+ * @class
+ * @extends Command
  */
 class Facebook extends Command {
   /**
@@ -21,7 +22,8 @@ class Facebook extends Command {
   }
 
   /**
-   * Execute the command
+   * @async
+   * @method run
    * @param {object} msg the message object
    */
   async run(msg) {
@@ -33,18 +35,20 @@ class Facebook extends Command {
     if (!msg.mentions.users) text = msgSplitinfo.join(' ');
     else {
       msgSplitinfo.shift();
-      text = msgSplitinfo.join(' ')
+      text = msgSplitinfo.join(' ');
     }
     const m = await msg.channel.send('LOADING...');
-    const buffer = await this.bot.ameAPI.generate('facebook', {
-      url: user.displayAvatarURL({
-        format: 'png',
-        size: 1024,
-      }),
-      text,
-    });
     msg.channel.send(
-      new MessageAttachment(buffer, `facebook-${Date.now()}.png`)
+      new MessageAttachment(
+        await this.bot.ameAPI.generate('facebook', {
+          url: user.displayAvatarURL({
+            format: 'png',
+            size: 1024,
+          }),
+          text,
+        }),
+        `facebook-${Date('now')}.png`
+      )
     );
     m.delete().catch(e => this.bot.log.error(e));
   }

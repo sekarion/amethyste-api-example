@@ -19,7 +19,8 @@ module.exports = class Help extends Command {
   }
 
   /**
-   * Execute the command
+   * @async
+   * @method run
    * @param {object} msg the message object
    */
   async run(msg) {
@@ -108,6 +109,7 @@ module.exports = class Help extends Command {
     const title = 'Améthyste API Example' + '\n';
     const sortedCategories = [];
     for (const key in categories) {
+      // eslint-disable-next-line no-prototype-builtins
       if (categories.hasOwnProperty(key)) {
         sortedCategories.push(key);
         categories[key].sort((a, b) => {
