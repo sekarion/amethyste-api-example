@@ -1,7 +1,8 @@
 const Command = require('../../structures/Command');
-const { MessageAttachment } = require('discord.js');
+const {MessageAttachment} = require('discord.js');
 /**
- * Class Discordhouse extends Command (baseCommand)
+ * @class
+ * @extends Command
  */
 class Discordhouse extends Command {
   /**
@@ -21,7 +22,8 @@ class Discordhouse extends Command {
   }
 
   /**
-   * Execute the command
+   * @async
+   * @method run
    * @param {object} msg the message object
    */
   async run(msg) {
@@ -29,21 +31,26 @@ class Discordhouse extends Command {
       return msg.channel.send('I am missing `ATTACH_FILES`');
     const user = msg.mentions.users.first() || msg.author;
     const m = await msg.channel.send('LOADING...');
+    const msgSplitinfo = msg.content.split(' ').splice(1);
     let text;
     if (!msg.mentions.users) text = msgSplitinfo.join(' ');
     else {
       msgSplitinfo.shift();
-      text = msgSplitinfo.join(' ')
+      text = msgSplitinfo.join(' ');
     }
-    if (['brilliance', 'bravery', 'balance'].indexOf(text.toLowercase()) === -1) text = '';
-    const buffer = await this.bot.ameAPI.generate('discordhouse', {
-      url: user.displayAvatarURL({
-        format: 'png',
-        size: 1024,
-      }),
-    });
+    if (['brilliance', 'bravery', 'balance'].indexOf(text.toLowercase()) === -1)
+      text = '';
     msg.channel.send(
-      new MessageAttachment(buffer, `discordhouse-${Date.now()}.png`)
+      new MessageAttachment(
+        await this.bot.ameAPI.generate('discordhouse', {
+          url: user.displayAvatarURL({
+            format: 'png',
+            size: 1024,
+          }),
+          house: text,
+        }),
+        `discordhouse-${Date('now')}.png`
+      )
     );
     m.delete().catch(e => this.bot.log.error(e));
   }

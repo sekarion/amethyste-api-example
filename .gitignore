@@ -1,4 +1,4 @@
 node_modules/
 config/config.js
 .idea/
-pnpm-lock.yaml
+.vscode/

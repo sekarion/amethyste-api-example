@@ -3,7 +3,8 @@ const {MessageAttachment} = require('discord.js');
 const minimist = require('minimist');
 
 /**
- * Class Beautiful extends Command (baseCommand)
+ * @class
+ * @extends Command
  */
 class Beautiful extends Command {
   /**
@@ -23,7 +24,8 @@ class Beautiful extends Command {
   }
 
   /**
-   * Execute the command
+   * @async
+   * @method run
    * @param {object} msg the message object
    */
   async run(msg) {
@@ -44,18 +46,17 @@ class Beautiful extends Command {
     }
     const user = msg.mentions.users.first() || msg.author;
     const m = await msg.channel.send('LOADING...');
-    // generate the image
-    const imgBuffer = await this.bot.ameAPI
-      .generate('blur', {
-        url: user.displayAvatarURL({
-          format: 'png',
-          size: 1024,
-        }),
-        blur,
-      })
-      .catch(err => this.bot.log.error(err));
     msg.channel.send(
-      new MessageAttachment(imgBuffer, `blur-${new Date('now')}.png`)
+      new MessageAttachment(
+        await this.bot.ameAPI.generate('blur', {
+          url: user.displayAvatarURL({
+            format: 'png',
+            size: 1024,
+          }),
+          blur,
+        }),
+        `blur-${new Date('now')}.png`
+      )
     );
     m.delete().catch(e => this.bot.log.error(e));
   }

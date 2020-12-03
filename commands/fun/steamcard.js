@@ -1,7 +1,8 @@
 const Command = require('../../structures/Command');
 const {MessageAttachment} = require('discord.js');
 /**
- * Class Steamcard extends Command (baseCommand)
+ * @class
+ * @extends Command
  */
 class Steamcard extends Command {
   /**
@@ -21,7 +22,8 @@ class Steamcard extends Command {
   }
 
   /**
-   * Execute the command
+   * @async
+   * @method run
    * @param {object} msg the message object
    */
   async run(msg) {
@@ -29,15 +31,17 @@ class Steamcard extends Command {
       return msg.channel.send('I am missing `ATTACH_FILES`');
     const user = msg.mentions.users.first() || msg.author;
     const m = await msg.channel.send('LOADING...');
-    const buffer = await this.bot.ameAPI.generate('steamcard', {
-      url: user.displayAvatarURL({
-        format: 'png',
-        size: 1024,
-      }),
-      text: user.username,
-    });
     msg.channel.send(
-      new MessageAttachment(buffer, `steamcard-${Date.now()}.png`)
+      new MessageAttachment(
+        await this.bot.ameAPI.generate('steamcard', {
+          url: user.displayAvatarURL({
+            format: 'png',
+            size: 1024,
+          }),
+          text: user.username,
+        }),
+        `steamcard-${Date('now')}.png`
+      )
     );
     m.delete().catch(e => this.bot.log.error(e));
   }

@@ -1,7 +1,8 @@
 const Command = require('../../structures/Command');
 const {MessageAttachment} = require('discord.js');
 /**
- * Class Thanos extends Command (baseCommand)
+ * @class
+ * @extends Command
  */
 class Thanos extends Command {
   /**
@@ -21,7 +22,8 @@ class Thanos extends Command {
   }
 
   /**
-   * Execute the command
+   * @async
+   * @method run
    * @param {object} msg the message object
    */
   async run(msg) {
@@ -29,14 +31,16 @@ class Thanos extends Command {
       return msg.channel.send('I am missing `ATTACH_FILES`');
     const user = msg.mentions.users.first() || msg.author;
     const m = await msg.channel.send('LOADING...');
-    const buffer = await this.bot.ameAPI.generate('thanos', {
-      url: user.displayAvatarURL({
-        format: 'png',
-        size: 1024,
-      }),
-    });
     msg.channel.send(
-      new MessageAttachment(buffer, `thanos-${Date.now()}.png`)
+      new MessageAttachment(
+        await this.bot.ameAPI.generate('thanos', {
+          url: user.displayAvatarURL({
+            format: 'png',
+            size: 1024,
+          }),
+        }),
+        `thanos-${Date('now')}.png`
+      )
     );
     m.delete().catch(e => this.bot.log.error(e));
   }

@@ -16,7 +16,7 @@ class MessageForm {
       list += c + '\n';
     });
     if (block) {
-      list = wrapBlock(list, lang);
+      list = this.wrapBlock(list, lang);
     }
     return list;
   }

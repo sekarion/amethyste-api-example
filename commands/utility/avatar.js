@@ -18,7 +18,8 @@ module.exports = class Avatar extends Command {
   }
 
   /**
-   * Execute the command
+   * @async
+   * @method run
    * @param {object} msg the message object
    */
   async run(msg) {
@@ -43,27 +44,23 @@ module.exports = class Avatar extends Command {
       else if (usr.size === 1) usr = usr.first();
       else return msg.channel.send(this.bot.utils.formatMembers(this.bot, usr));
     }
-    let avatar = usr.user.avatar
-      ? user.user.avatar.startsWith('a_')
-        ? `​https://cdn.discordapp.com/avatars/${usr.user.id}/${usr.user.avatar}.gif`
-        : `​https://cdn.discordapp.com/avatars/${usr.user.id}/${usr.user.avatar}.webp`
-      : usr.user.defaultAvatarURL;
-    avatar = avatar.replace(/[^a-zA-Z0-9_\-./:]/, '');
-    avatar += '?size=1024';
     try {
-      const reply = {
-        embed: {
-          author: {
-            name: `${usr.user.username}#${usr.user.discriminator}`,
-          },
-          image: {
-            url: `${avatar}`,
-          },
-          color: 0x00adff,
-        },
-      };
       msg.channel
-        .send(reply)
+        .send({
+          embed: {
+            author: {
+              name: `${usr.user.tag}`,
+            },
+            image: {
+              url: `${usr.user.displayAvatarURL({
+                format: 'png',
+                dynamic: true,
+                size: 4096,
+              })}`,
+            },
+            color: 0x00adff,
+          },
+        })
         .then()
         .catch(err => {
           this.bot.log.error(err);

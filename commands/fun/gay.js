@@ -1,7 +1,8 @@
 const Command = require('../../structures/Command');
 const {MessageAttachment} = require('discord.js');
 /**
- * Class Gay extends Command (baseCommand)
+ * @class
+ * @extends Command
  */
 class Gay extends Command {
   /**
@@ -21,7 +22,8 @@ class Gay extends Command {
   }
 
   /**
-   * Execute the command
+   * @async
+   * @method run
    * @param {object} msg the message object
    */
   async run(msg) {
@@ -29,14 +31,16 @@ class Gay extends Command {
       return msg.channel.send('I am missing `ATTACH_FILES`');
     const user = msg.mentions.users.first() || msg.author;
     const m = await msg.channel.send('LOADING...');
-    const buffer = await this.bot.ameAPI.generate('gay', {
-      url: user.displayAvatarURL({
-        format: 'png',
-        size: 1024,
-      }),
-    });
     msg.channel.send(
-      new MessageAttachment(buffer, `gay-${Date.now()}.png`)
+      new MessageAttachment(
+        await this.bot.ameAPI.generate('gay', {
+          url: user.displayAvatarURL({
+            format: 'png',
+            size: 1024,
+          }),
+        }),
+        `gay-${Date('now')}.png`
+      )
     );
     m.delete().catch(e => this.bot.log.error(e));
   }

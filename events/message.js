@@ -18,7 +18,6 @@ module.exports = class {
       return;
     }
     this.bot.log.error(msg.content);
-
     if (msg.content.match(new RegExp(`^<@!?${this.bot.user.id}>( |)$`))) {
       return msg.channel.send(
         `My prefix is ${

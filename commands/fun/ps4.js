@@ -21,7 +21,8 @@ class Ps4 extends Command {
   }
 
   /**
-   * Execute the command
+   * @async
+   * @method run
    * @param {object} msg the message object
    */
   async run(msg) {
@@ -29,14 +30,16 @@ class Ps4 extends Command {
       return msg.channel.send('I am missing `ATTACH_FILES`');
     const user = msg.mentions.users.first() || msg.author;
     const m = await msg.channel.send('LOADING...');
-    const buffer = await this.bot.ameAPI.generate('ps4', {
-      url: user.displayAvatarURL({
-        format: 'png',
-        size: 1024,
-      }),
-    });
     msg.channel.send(
-      new MessageAttachment(buffer, `ps4-${Date.now()}.png`)
+      new MessageAttachment(
+        await this.bot.ameAPI.generate('ps4', {
+          url: user.displayAvatarURL({
+            format: 'png',
+            size: 1024,
+          }),
+        }),
+        `ps4-${Date('now')}.png`
+      )
     );
     m.delete().catch(e => this.bot.log.error(e));
   }

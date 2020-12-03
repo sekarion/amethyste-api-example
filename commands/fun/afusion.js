@@ -1,7 +1,8 @@
 const Command = require('../../structures/Command');
 const {MessageAttachment} = require('discord.js');
 /**
- * Class Afusion extends command (baseCommand)
+ * @class
+ * @extends Command
  */
 class Afusion extends Command {
   /**
@@ -21,7 +22,8 @@ class Afusion extends Command {
   }
 
   /**
-   * Execute the command
+   * @async
+   * @method run
    * @param {object} msg the message object
    */
   async run(msg) {
@@ -32,12 +34,14 @@ class Afusion extends Command {
       })
     );
     const m = await msg.channel.send('LOADING...');
-    const buffer = await this.bot.ameAPI.generate('afusion', {
-      url: avatarList[0] || msg.author,
-      avatar: avatarList[1] || msg.author,
-    });
     msg.channel.send(
-      new MessageAttachment(buffer, `afusion-${Date.now()}.png`)
+      new MessageAttachment(
+        await this.bot.ameAPI.generate('afusion', {
+          url: avatarList[0] || msg.author,
+          avatar: avatarList[1] || msg.author,
+        }),
+        `afusion-${Date('now')}.png`
+      )
     );
     m.delete();
   }
