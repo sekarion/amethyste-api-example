@@ -16,7 +16,7 @@ dependencies:
     version: 4.1.0
   discord.js:
     specifier: github:discordjs/discord.js
-    version: git/github.com+discordjs/discord.js/8eb978d32c9e2995dcbef18663329e005dddbbb0
+    version: git@github.com+discordjs/discord.js/8eb978d32c9e2995dcbef18663329e005dddbbb0
   draftlog:
     specifier: ^1.0.12
     version: 1.0.12
@@ -688,7 +688,7 @@ packages:
       levn: 0.4.1
       prelude-ls: 1.2.1
       type-check: 0.4.0
-      word-wrap: 1.2.3
+      word-wrap: 1.2.5
     dev: true
 
   /parent-module@1.0.1:
@@ -878,8 +878,8 @@ packages:
       isexe: 2.0.0
     dev: true
 
-  /word-wrap@1.2.3:
-    resolution: {integrity: sha512-Hz/mrNwitNRh/HUAtM/VT/5VH+ygD6DV7mYKZAtHOrbs8U7lvPS6xf7EJKMF0uW1KJCl0H701g3ZGus+muE5vQ==}
+  /word-wrap@1.2.5:
+    resolution: {integrity: sha512-BN22B5eaMMI9UMtjrGd5g5eCYPpCPDUy0FJXbYsaT5zYxjFOckS53SQDE3pWkVoWpHXVb3BrYcEN4Twa55B5cA==}
     engines: {node: '>=0.10.0'}
     dev: true
 
@@ -905,7 +905,7 @@ packages:
       nan: 2.14.2
     dev: false
 
-  git/github.com+discordjs/discord.js/8eb978d32c9e2995dcbef18663329e005dddbbb0:
+  git@github.com+discordjs/discord.js/8eb978d32c9e2995dcbef18663329e005dddbbb0:
     resolution: {commit: 8eb978d32c9e2995dcbef18663329e005dddbbb0, repo: git@github.com:discordjs/discord.js.git, type: git}
     name: '@discordjs/discord.js'
     version: 0.0.0
