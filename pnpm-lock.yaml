@@ -16,7 +16,7 @@ dependencies:
     version: 4.1.0
   discord.js:
     specifier: github:discordjs/discord.js
-    version: git/github.com+discordjs/discord.js/8eb978d32c9e2995dcbef18663329e005dddbbb0
+    version: git@github.com+discordjs/discord.js/8eb978d32c9e2995dcbef18663329e005dddbbb0
   draftlog:
     specifier: ^1.0.12
     version: 1.0.12
@@ -124,8 +124,8 @@ packages:
     engines: {node: '>=6'}
     dev: true
 
-  /ansi-regex@4.1.0:
-    resolution: {integrity: sha512-1apePfXM1UOSqw0o9IiFAovVz9M5S1Dg+4TrDwfMewQ6p/rmMueb7tWZjQ1rx4Loy1ArBggoqGpfqqdI4rondg==}
+  /ansi-regex@4.1.1:
+    resolution: {integrity: sha512-ILlv4k/3f6vfQ4OoP2AGvirOktlQ98ZEL1k9FaQjxa3L1abBgbuTDAdPOpvbGncC0BTVQrl+OM8xZGK6tWXt7g==}
     engines: {node: '>=6'}
     dev: true
 
@@ -799,7 +799,7 @@ packages:
     resolution: {integrity: sha512-DuRs1gKbBqsMKIZlrffwlug8MHkcnpjs5VPmL1PAh+mA30U0DTotfDZ0d2UUsXpPmPmMMJ6W773MaA3J+lbiWA==}
     engines: {node: '>=6'}
     dependencies:
-      ansi-regex: 4.1.0
+      ansi-regex: 4.1.1
     dev: true
 
   /strip-ansi@6.0.0:
@@ -905,7 +905,7 @@ packages:
       nan: 2.14.2
     dev: false
 
-  git/github.com+discordjs/discord.js/8eb978d32c9e2995dcbef18663329e005dddbbb0:
+  git@github.com+discordjs/discord.js/8eb978d32c9e2995dcbef18663329e005dddbbb0:
     resolution: {commit: 8eb978d32c9e2995dcbef18663329e005dddbbb0, repo: git@github.com:discordjs/discord.js.git, type: git}
     name: '@discordjs/discord.js'
     version: 0.0.0
