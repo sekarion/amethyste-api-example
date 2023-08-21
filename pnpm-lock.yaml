@@ -16,7 +16,7 @@ dependencies:
     version: 4.1.0
   discord.js:
     specifier: github:discordjs/discord.js
-    version: git/github.com+discordjs/discord.js/8eb978d32c9e2995dcbef18663329e005dddbbb0
+    version: git@github.com+discordjs/discord.js/8eb978d32c9e2995dcbef18663329e005dddbbb0
   draftlog:
     specifier: ^1.0.12
     version: 1.0.12
@@ -81,7 +81,7 @@ packages:
       ignore: 4.0.6
       import-fresh: 3.2.2
       js-yaml: 3.14.0
-      lodash: 4.17.20
+      lodash: 4.17.21
       minimatch: 3.0.4
       strip-json-comments: 3.1.1
     transitivePeerDependencies:
@@ -391,7 +391,7 @@ packages:
       js-yaml: 3.14.0
       json-stable-stringify-without-jsonify: 1.0.1
       levn: 0.4.1
-      lodash: 4.17.20
+      lodash: 4.17.21
       minimatch: 3.0.4
       natural-compare: 1.4.0
       optionator: 0.9.1
@@ -625,8 +625,8 @@ packages:
       type-check: 0.4.0
     dev: true
 
-  /lodash@4.17.20:
-    resolution: {integrity: sha512-PlhdFcillOINfeV7Ni6oF1TAEayyZBoZ8bcshTHqOYJYlrqzRK5hagpagky5o4HfCzzd1TRkXPMFq6cKk9rGmA==}
+  /lodash@4.17.21:
+    resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
     dev: true
 
   /lru-cache@6.0.0:
@@ -832,7 +832,7 @@ packages:
     engines: {node: '>=6.0.0'}
     dependencies:
       ajv: 6.12.6
-      lodash: 4.17.20
+      lodash: 4.17.21
       slice-ansi: 2.1.0
       string-width: 3.1.0
     dev: true
@@ -905,7 +905,7 @@ packages:
       nan: 2.14.2
     dev: false
 
-  git/github.com+discordjs/discord.js/8eb978d32c9e2995dcbef18663329e005dddbbb0:
+  git@github.com+discordjs/discord.js/8eb978d32c9e2995dcbef18663329e005dddbbb0:
     resolution: {commit: 8eb978d32c9e2995dcbef18663329e005dddbbb0, repo: git@github.com:discordjs/discord.js.git, type: git}
     name: '@discordjs/discord.js'
     version: 0.0.0
