@@ -16,7 +16,7 @@ dependencies:
     version: 4.1.0
   discord.js:
     specifier: github:discordjs/discord.js
-    version: git/github.com+discordjs/discord.js/8eb978d32c9e2995dcbef18663329e005dddbbb0
+    version: git@github.com+discordjs/discord.js/8eb978d32c9e2995dcbef18663329e005dddbbb0
   draftlog:
     specifier: ^1.0.12
     version: 1.0.12
@@ -397,7 +397,7 @@ packages:
       optionator: 0.9.1
       progress: 2.0.3
       regexpp: 3.1.0
-      semver: 7.3.4
+      semver: 7.5.4
       strip-ansi: 6.0.0
       strip-json-comments: 3.1.1
       table: 5.4.6
@@ -753,8 +753,8 @@ packages:
       glob: 7.1.6
     dev: true
 
-  /semver@7.3.4:
-    resolution: {integrity: sha512-tCfb2WLjqFAtXn4KEdxIhalnRtoKFN7nAwj0B3ZXCbQloV2tq5eDbcTmT68JJD3nRJq24/XgxtQKFIpQdtvmVw==}
+  /semver@7.5.4:
+    resolution: {integrity: sha512-1bCSESV6Pv+i21Hvpxp3Dx+pSD8lIPt8uVjRrxAUt/nbswYc+tK6Y2btiULjd4+fnq15PX+nqQDC7Oft7WkwcA==}
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
@@ -905,7 +905,7 @@ packages:
       nan: 2.14.2
     dev: false
 
-  git/github.com+discordjs/discord.js/8eb978d32c9e2995dcbef18663329e005dddbbb0:
+  git@github.com+discordjs/discord.js/8eb978d32c9e2995dcbef18663329e005dddbbb0:
     resolution: {commit: 8eb978d32c9e2995dcbef18663329e005dddbbb0, repo: git@github.com:discordjs/discord.js.git, type: git}
     name: '@discordjs/discord.js'
     version: 0.0.0
